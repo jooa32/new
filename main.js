@@ -1,49 +1,39 @@
 var http = require('http');
 var fs = require('fs');
-const { url } = require('inspector');
+var url = require('url');
+// const { stringify } = require('querystring');
+var qs = require('querystring');
 
-var app = http.createServer(function(request,response){
+
+var app = http.createServer(function(request, response) {
+  try {
     var _url = request.url;
-    var queryData = url.parse(_url, true).query;
-    var title = queryData.id;
+    console.log(request);
+    console.log("url: ", _url);
 
-    if(_url == '/'){
-      title = "Welcome"
+    if (_url == '/') {
+      title = "/login.html"
+    } else if (_url == '/hihi') {
+      title = "/hello";
+    } else if (_url == '/main.js'){
+      console.log('error');
     }
 
-    if(_url == '/favicon.ico'){
-      response.writeHead(404);
-      response.end();
-      return;
+    else {
+      title = _url;
     }
+
     response.writeHead(200);
-    response.end(fs.readFileSync(__dirname + url));
-
-    fs.readFile(`data/${title}`, 'utf8', (err, description) => {        
-      var template = `
-      <!doctype html>
-      <html>
-      <head>
-      <title>WEB1 - HTML</title>
-      <meta charset="utf-8">
-      </head>
-      <body>
-      <h1><a href="/">WEB - ${title}</a></h1>
-      <ol>
-          <li><a href="?id=HTML">HTML</a></li>
-          <li><a href="?id=CSS">CSS</a></li>
-          <li><a href="?id=JavaScript">JavaScript</a></li>
-      </ol>
-      <h2>${title}</h2>
-      <p>
-          ${description}
-      </p>
-      </body>
-      </html>
-      `        
-      response.end(template);
-  })
- 
+    fileContent = fs.readFileSync(__dirname + title);
+    response.end(fileContent);
+  } catch (error) {
+    // title = "/error.js";
+    // console.log(response.writeHead(404));
+    response.writeHead(404);
+    // response.end();
+    var errormessage = String(error)
+    response.end(errormessage);
+  }
 });
 
 app.listen(3000);

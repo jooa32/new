@@ -14,7 +14,7 @@
 
 
     <body>
-        <section class = "fullpage">
+        <!-- <section class = "fullpage">
             <div class = "login">
                 <h1> Sign In </h1>
                 <div class="container">
@@ -25,12 +25,37 @@
                     <button id="join" class="account">Sign Up</button>
                     <p id="alert" class="account"> </p>
                 </div>
-            </div>   
+            </div>    -->
+        <!-- form data will be sent to a page called /action_page.php -->
+        <form action="/login" method = "POST" >
+            <section class = "fullpage">
+                <div class = "login">
+                    <h1> Sign In </h1>
+                    <div class="container">
+                        <!-- <p> <input type="text" placeholder="ID" id="id" class="account"> </p>
+                        <p> <input type="password" placeholder="Password" id="password" class="account"> </p>
+                        
+                        <button id="login" class="account">Sign In</button>
+                        <button id="join" class="account">Sign Up</button>
+                        <p id="alert" class="account"> </p> -->
+                        <form>
+                            <label for="ID">ID:</label><br>
+                            <input type="text" id="id" name="id"><br>
+                            <label for="PW">PW:</label><br>
+                            <input type="text" id="pw" name="pw">
+                            <p>
+                                <button id="login" class="account">Sign In</button>
+                                <button id="join" class="account">Sign Up</button>
+                         
+                            </p>
+                            
+                          </form>
+                    </div>
+                </div> 
+        </form>
+        
 
-            
-
-
-
+        
             </div>
 
         </section>
