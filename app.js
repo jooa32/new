@@ -36,7 +36,7 @@ app.post('/login', (req, res) => {
 });
 
 
-
+// //using get method 
 // app.get('/login', (req, res) => {
 //   res.send(`<span>${req.query.id}</span><p></p><span>${req.query.pw}</span>`)
 //   console.log(req.query)
