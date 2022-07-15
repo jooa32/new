@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang = "ko">
+    <head>
+        <meta charset="UTF-8"> 
+        <meta name = "author" content="yourname">
+        <meta name = "description" content ="description of your page">
+        <meta name = "keywords" content= "list, of, keywords, separate, by, commas">
+        <meta name = "viewport">
+        <title>Title</title>
+        
+        <!-- <link rel="stylesheet" href="public/main.css?ver0.1" type="text/css"> -->
+        <link rel="stylesheet" href="main.css">
+
+    </head>
+
+
+    <body>
+        <!-- <section class = "fullpage">
+            <div class = "login">
+                <h1> Sign In </h1>
+                <div class="container">
+                    <p> <input type="text" placeholder="ID" id="id" class="account"> </p>
+                    <p> <input type="password" placeholder="Password" id="password" class="account"> </p>
+                    
+                    <button id="login" class="account">Sign In</button>
+                    <button id="join" class="account">Sign Up</button>
+                    <p id="alert" class="account"> </p>
+                </div>
+            </div>    -->
+        <!-- form data will be sent to a page called /action_page.php -->
+        <form action="/login" method = "post" >
+            <section class = "fullpage">
+                <div class = "login">
+                    <h1> Sign In </h1>
+                    <div class="container">
+                        <!-- <p> <input type="text" placeholder="ID" id="id" class="account"> </p>
+                        <p> <input type="password" placeholder="Password" id="password" class="account"> </p>
+                        
+                        <button id="login" class="account">Sign In</button>
+                        <button id="join" class="account">Sign Up</button>
+                        <p id="alert" class="account"> </p> -->
+                        <form action="/login" method = "post">
+                            <label for="ID">ID:</label><br>
+                            <input type="text" id="id" name="id"><br>
+                            <label for="PW">PW:</label><br>
+                            <input type="text" id="pw" name="pw">
+                        </form>
+                        <p>
+                            <button id="login" class="account">Sign In</button>
+                            <button id="join" class="account">Sign Up</button>
+                        </p>
+                    </div>
+                </div> 
+        </form>
+        
+
+        
+            </div>
+
+        </section>
+
+        <div class = "contact">
+            <p class = "information_email"> For more information 
+                <a href="mailto: jooal@uw.edu"> email </a> or 
+                <a href="tel:+12065551212"> mobile</a>.
+            </p>
+
+        </div>
+        
+    </body>
+
+
+
+
+
+</html>
