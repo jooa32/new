@@ -33,13 +33,11 @@ let user = {
 //     users.tj.hash = hash;
 //   });
   
-
-
 app.get('/', (req, res) => {      // 1
   if(req.session.logined) {
-    res.render('login', { id: req.session.user_id });
+    res.render('logout', { id: req.session.user_id });
   } else {
-    res.render('logout');
+    res.render('login');
   }
 });
 

@@ -42,8 +42,6 @@ app.post('/login', (req, res) => {
 
 });
 
-
-
 const server = http.createServer(app);
 server.listen(3000);
 
