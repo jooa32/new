@@ -2,60 +2,67 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
-const FileStore = require('session-file-store')(session); // 1
+const FileStore = require('session-file-store')(session);
 const bodyParser = require('body-parser');
+var path = require('path');
 
+//config 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-app.use(bodyParser.urlencoded({extended: false}));
+//middle ware 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(__dirname + '/public'));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  store: new FileStore()
+}));
 
-app.use(session({  // 2
-    secret: 'keyboard cat',  // 암호화
-    resave: false,
-    saveUninitialized: true,
-    store: new FileStore()
-  }));
+//dummy database 
+let user = {      
+  user_id: "lee",
+  user_pwd: "1111"
+};
 
-//   app.get('/', (req, res, next) => {  // 3
-//     console.log(req.session);
-//     if(!req.session.num){
-//       req.session.num = 1;
-//     } else {
-//       req.session.num = req.session.num + 1;
-//     }
-//     res.send(`Number : ${req.session.num}`);
+// hash({ password: 'foobar' }, function (err, pass, salt, hash) {
+//     if (err) throw err;
+//     // store the salt & hash in the "db"
+//     user.tj.salt = salt;
+//     users.tj.hash = hash;
 //   });
-
-  let users = {
-    user_id: "kim", 
-    user_pw: "1111"
-  };
-
-  app.get('/', (req, res) => {
-    if (req.session.logined){
-        res.render('logout', {id: req.session.user_id});
-    } else{
-        res.render('login');
-    }
-  });
-
-  app.post('/', (req, res) => {
-    if(req.body.id == users.user_id && req.body.pw == users.user_pw){
-        req.session.logined = true; 
-        req.session.user_id = req.body.id;
-        res.render('logout', {id: req.session.user_id});
-    } else{
-        res.send(`<h1> who are you? </h1>
-                  <a href="/"> Back </a>`);
-    }
-  });
-
-  app.post('/logout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
-  });
   
-  app.listen(3000, () => {
-    console.log('listening 3000port');
-  });
+
+
+app.get('/', (req, res) => {      // 1
+  if(req.session.logined) {
+    res.render('login', { id: req.session.user_id });
+  } else {
+    res.render('logout');
+  }
+});
+
+
+
+app.post('/', (req, res) => {      // 2
+  if(req.body.id == user.user_id && req.body.pwd == user.user_pwd){
+    req.session.logined = true;
+    req.session.user_id = req.body.id;
+    res.render('logout', { id: req.session.user_id });
+    } else {
+        res.send(`<span>${req.body.id}</span><p></p><span>${req.body.pwd}</span>
+                    <a href="/"> Back </a>`);
+  }
+});
+
+
+app.post('/logout', (req, res) => {      // 3
+  req.session.destroy();
+  res.redirect('/');
+});
+
+
+app.listen(3000, () => {
+  console.log('listening 3000port');
+});
