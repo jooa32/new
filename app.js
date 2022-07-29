@@ -18,6 +18,7 @@ app.post('/login', (req, res) => {
 
 app.post('/register', (req,res) => {
     res.render('register') //register.ejs
+    
 })
 app.listen(3000, () => {
     console.log('3000 port');
