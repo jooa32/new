@@ -1,14 +1,54 @@
-<html>
-<body>
-  <form action="/" method="POST">
-    <input type="text" id="favorite" name="favorite" 
-    placeholder="좋아하는 맛" />
-    <input type="submit" />
-  </form>
-  <% if(favorite) { %>
-    <%= favorite %>
-  <% } else { %>
-    Not Cookie
-    <% } %>
-  </body>
+<!DOCTYPE html>
+<html lang = "ko">
+    <head>
+        <meta charset="UTF-8"> 
+        <!-- <meta name = "author" content="yourname">
+        <meta name = "description" content ="description of your page">
+        <meta name = "keywords" content= "list, of, keywords, separate, by, commas">
+        <meta name = "viewport"> -->
+        <title>Login</title>
+        
+        <!-- <link rel="stylesheet" href="public/main.css?ver0.1" type="text/css"> -->
+        <link rel="stylesheet" href="main.css">
+
+    </head>
+
+
+    <body>
+        
+        <form action="/login" method = "post" >
+            <section class = "fullpage">
+                <div class = "login">
+                    <h1> Welcome </h1>
+                    <div cnodelass="container">
+                        <p>
+                            <button id="login" class="account" >로그인</button>
+                        </p>
+                    </div>
+                </div> 
+        </form>
+
+        <form action="/register" method = "post">
+            <p>
+                <button id = "signup" class = "account"> 회원가입 </button>
+            </p>
+        </form>
+        
+
+        
+            </div>
+
+        </section>
+
+        <!-- <div class = "contact">
+            <p class = "information_email"> For more information 
+                <a href="mailto: jooal@uw.edu"> email </a> or 
+                <a href="tel:+12065551212"> mobile</a>.
+            </p>
+
+        </div> -->
+        
+    </body>
 </html>
+
+

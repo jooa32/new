@@ -1,54 +1,35 @@
-const http = require('http');
-const path = require('path');
-const exp = require('constants');
-const express = require('express');
-const app = express();
-var bodyParser = require('body-parser');
-const fs = require('fs');
-const { ppid } = require('process');
+/* cookie\cookie.js */
+
+const app = require('express')();
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 
-app.get('/', function(request, response){
-  response.sendFile(__dirname + "/public/login.html")
-})
+let ID;
+let PW;
 
-app.get('/request', function(request, response){
-  response.sendFile(__dirname + "/public/Request.html")
-  console.log('sent');
-})
+app.get('/', (req, res) => {
+    res.render('index', { favorite: req.cookies.favorite });
+  });
 
-app.get('/give', function(request, response){
-  response.sendFile(__dirname + "/public/Give.html")
-})
-//
-
-app.use(express.static('public'))
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json())
-
-
-
-// app.get('/login', function(req, res){
-//   res.render('login');
-// });
 
 
 app.post('/login', (req, res) => {
-  var ID = req.body.id
-  var PW = req.body.pw
-  res.send(`<span>${ID}</span><p></p><span>${PW}</span>`)
-  console.log(req.body);
-  
+    res.render('login');
+})
 
+app.post('/register', (req, res) => {
+    res.render('register')
+})
+
+
+app.listen(3000, () => {
+    console.log('3000 port');
 });
 
-const server = http.createServer(app);
-server.listen(3000);
 
-// const app2 = express();
-// app2.set('view engine', 'ejs');
-// app.post('/Request.ejs', (req, res)=> {
-//   const ID = req.body.id;
-//   res.render('Request', {id});
-// })
 
