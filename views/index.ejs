@@ -1,14 +1,41 @@
-<html>
-<body>
-  <form action="/" method="POST">
-    <input type="text" id="favorite" name="favorite" 
-    placeholder="좋아하는 맛" />
-    <input type="submit" />
-  </form>
-  <% if(favorite) { %>
-    <%= favorite %>
-  <% } else { %>
-    Not Cookie
-    <% } %>
-  </body>
+<!DOCTYPE html>
+<html lang = "ko">
+    <head>
+        <meta charset="UTF-8"> 
+        <title>main page</title>
+        
+        <!-- <link rel="stylesheet" href="public/main.css?ver0.1" type="text/css"> -->
+        <link rel="stylesheet" href="main.css">
+
+    </head>
+
+
+    <body>
+      <h1>Welcome</h1>
+        <form action="/login" method = "post" >
+            <section class = "fullpage">
+                <div class = "login">
+                    <div cnodelass="container">
+                        <p>
+                            <button id="login" class="account">로그인</button>
+                        </p>
+                    </div>
+                </div> 
+        </form>
+
+
+        <form action="/register" method ="post">
+            <button id="join" class="account">회원가입</button>
+        </form>
+        
+
+        
+            </div>
+
+        </section>
+
+        
+    </body>
 </html>
+
+
